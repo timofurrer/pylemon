@@ -10,8 +10,8 @@
 # Description: python daemon to monitor specific directories and react on changes
 ### END INIT INFO
 
-DIR=/home/tuxtimo/work/pylemon/pylemon
-DAEMON=$DIR/main.py
+DIR=/usr/local/bin
+DAEMON=$DIR/pylemon
 DAEMON_NAME=pylemon
 
 # This next line determines what user the script runs as.

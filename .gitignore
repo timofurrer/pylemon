@@ -3,3 +3,8 @@
 
 # vim swap files
 *.swp
+
+# setuptools files
+build
+dist
+pylemon.egg-info/
