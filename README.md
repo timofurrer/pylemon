@@ -1,5 +1,5 @@
 # pylemon
-> **py**thon fi**le** **mon**itor <br>
+> python file monitor <br>
 > python daemon to monitor specific directories and react on changes
 
 ***
