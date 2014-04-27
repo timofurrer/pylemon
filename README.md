@@ -61,13 +61,15 @@ The config file syntax is like the following:
 
     monitor:
       <somedirectory>
-        onfile:
-          create: /example/create_hook_script
-          delete: /example/delete_hook_script
-          modify: /example/modify_hook_script
-        ondir:
-          create: /example/create_hook_script
-          delete: /example/delete_hook_script
-          modify: /example/modify_hook_script
+        create: /example/create_hook_script
+        delete: /example/delete_hook_script
+        modify: /example/modify_hook_script
       <someotherdirectory>
         ...
+
+The script gets the following arguments passed:
+
+    $1: action
+    $2: watched directory
+    $3: affected path
+    $4: if the affected path is a directory (1: dir, 0: no dir)

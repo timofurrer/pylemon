@@ -4,6 +4,7 @@ from pyinotify import ProcessEvent
 from subprocess import Popen, PIPE
 
 from logger import Logger
+from monitor import Monitor
 
 
 class DirectoryHandler(ProcessEvent):
@@ -22,6 +23,7 @@ class DirectoryHandler(ProcessEvent):
     def register_event(self, event, action):
         self._eventmask |= event
         self._events[event] = action
+        self._events[event | Monitor.ISDIR] = action
 
     def _is_registered(self, event):
         if event.mask not in self._events:
