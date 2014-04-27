@@ -31,20 +31,14 @@ class DirectoryHandler(ProcessEvent):
             return False
         return True
 
-    def process_IN_CREATE(self, event):
-        self._is_registered(event)
-        self._logger.info("created %s" % event.pathname)
-        self._execute_action(event)
-
-    def process_IN_MODIFY(self, event):
-        self._is_registered(event)
-        self._logger.info("modified %s" % event.pathname)
-        self._execute_action(event)
-
-    def process_IN_DELETE(self, event):
-        self._is_registered(event)
-        self._logger.info("deleted %s" % event.pathname)
-        self._execute_action(event)
+    def __getattr__(self, attr):
+        if attr.startswith("process_IN_"):
+            def _process_wrapper(event):
+                self._is_registered(event)
+                self._logger.info("%s %s" % (event.maskname, event.pathname))
+                self._execute_action(event)
+            return _process_wrapper
+        raise AttributeError("no attribute %s found in DirectoryHandler" % attr)
 
     def _execute_action(self, event):
         action = self._events[event.mask]
