@@ -70,3 +70,4 @@ The config file syntax is like the following:
           delete: /example/delete_hook_script
           modify: /example/modify_hook_script
       <someotherdirectory>
+        ...
